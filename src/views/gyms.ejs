@@ -1,0 +1,61 @@
+<%- include ('partials/header.ejs'); -%>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Gym</th>
+            <th>Price/Month</th>
+            <th>Address</th>
+            <th>Admin</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% data.forEach((gym, index) => { %>
+              <tr>
+                  <td><%= gym.id %></td>
+                  <td><%= gym.name %></td>
+                  <td><%= gym.price %> €</td>
+                  <td><%= gym.address %></td>
+                  <td><%= gym.admin %></td>
+                  <td>
+                      <a href="/update/<%= gym.id %>" class="btn btn-sm btn-info">Edit</a>
+                      <a href="/delete/<%= gym.id %>" class="btn btn-sm btn-danger">Delete</a>
+                  </td>
+              </tr>
+          <% }) %>
+      </tbody>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+            <form action="/add" method="post">
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Gym" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="number" name="price" placeholder="Monthly fee" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="address" placeholder="Address" class="form-control" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" name="admin" placeholder="Admin" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Gym</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include ('partials/footer.ejs'); -%>
+
+

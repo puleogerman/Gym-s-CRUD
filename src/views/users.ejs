@@ -1,0 +1,59 @@
+<%- include ('partials/header.ejs'); -%>
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-8">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Last-Name</th>
+                <th>Phone</th>
+                <th>Gym</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((user, index) => { %>
+                  <tr>
+                      <td><%= user.id %></td>
+                      <td><%= user.first_name %></td>
+                      <td><%= user.last_name %></td>
+                      <td>+34 <%= user.number %></td>
+                      <td><%= user.name %></td>
+                      <td>
+                          <a href="/users/update/<%= user.id %>" class="btn btn-sm btn-info">Edit</a>
+                          <a href="/users/delete/<%= user.id %>" class="btn btn-sm btn-danger">Delete</a>
+                      </td>
+                  </tr>
+              <% }) %>
+          </tbody>
+            </tbody>
+          </table>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+            <form action="/add" method="post">
+              <div class="form-group">
+                <input type="text" name="first_name" placeholder="Name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="last_name" placeholder="Last-Name" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="number" placeholder="Number" class="form-control" required>
+              </div>
+              <div class="form-group">
+                  <input type="number" name="gym_id" placeholder="Select-gym" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Member</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include ('partials/footer.ejs'); -%>
